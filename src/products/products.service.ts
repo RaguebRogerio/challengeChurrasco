@@ -15,8 +15,9 @@ export class ProductsService {
     return productCreated;
   }
 
-  findAll() {
-    return `This action returns all products`;
+  async findAll() {
+    const listAllProduct = await this.productModule.find({});
+    return listAllProduct;
   }
 
   async findOne(idProduct: number) {
