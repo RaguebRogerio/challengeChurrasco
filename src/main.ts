@@ -6,10 +6,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
   .setTitle('Challenge Churrasco')
-  .setDescription('Este es un challenge desarrollado por Franco Asfoura')
+  .setDescription('Este es un challenge desarrollado por Franco Asfoura como prueba para ingresar a la empresa Churrasco')
   .setVersion('1.0')
-  .addTag('logging')
-  .addTag('product')
+  .addTag('User')
+  .addTag('Products')
   .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
