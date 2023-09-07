@@ -36,4 +36,4 @@ export class Users {
   lastLogin: Date;
 }
 
-export const ProductsSchema = SchemaFactory.createForClass(Users);
+export const UsersSchema = SchemaFactory.createForClass(Users);

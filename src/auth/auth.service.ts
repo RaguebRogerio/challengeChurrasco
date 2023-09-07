@@ -1,10 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-
+import { Injectable, HttpException } from '@nestjs/common';
+import { LoginAuthDto } from './dto/login-auth.dto';
+import {InjectModel} from '@nestjs/mongoose'
+import { Users, UsersDocument } from 'src/users/schema/users.schema';
+import { Model } from 'mongoose';
+import { createHash } from 'crypto';
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(@InjectModel(Users.name) private userModule:Model<UsersDocument>){}
+
+  async login(userObjectLogin:LoginAuthDto){
+    const {email, username, password} = userObjectLogin;
+    const findUser = await this.userModule.findOne({$or: [{ email }, { username }]});
+
+    if(!findUser) throw new HttpException('USER_NOT_FIND', 404);
+
+    const sha256Password = createHash('sha256').update(password).digest('hex');
+
+    if(sha256Password!==findUser.password) throw new HttpException('PASSWORD_INCORRECT', 403);
+
+    const data = findUser;
+
+    return data;
   }
 
 }
