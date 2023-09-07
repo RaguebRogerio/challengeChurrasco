@@ -9,7 +9,7 @@ async function bootstrap() {
   .setTitle('Challenge Churrasco')
   .setDescription('Este es un challenge desarrollado por Franco Asfoura como prueba para ingresar a la empresa Churrasco')
   .setVersion('1.0')
-  .addTag('User')
+  .addTag('Auth')
   .addTag('Products')
   .build();
   const document = SwaggerModule.createDocument(app, config);
