@@ -8,6 +8,7 @@ async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
+  .addBearerAuth()
   .setTitle('Challenge Churrasco')
   .setDescription('Este es un challenge desarrollado por Franco Asfoura como prueba para ingresar a la empresa Churrasco')
   .setVersion('1.0')
