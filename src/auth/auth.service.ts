@@ -13,6 +13,10 @@ export class AuthService {
     const findUser = await this.userModule.findOne({$or: [{ email }, { username }]});
 
     if(!findUser) throw new HttpException('USER_NOT_FIND', 404);
+    
+    if(findUser.role!=="admin") throw new HttpException('USER_UNAUTORIZED', 401);
+
+    if(findUser.active) throw new HttpException('USER_DESACTIVED', 410);
 
     const sha256Password = createHash('sha256').update(password).digest('hex');
 
