@@ -24,8 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
+Codigo presentado por Franco Asfoura, para 
 ## Installation
 
 ```bash
@@ -40,22 +39,13 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
+## Swagger
+The local swagger run in http://localhost:3000/docs
 
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Asfoura,Franco](https://www.linkedin.com/in/franco-ragueb-asfoura-assaff-77b574201/)
 
-## License
 
-Nest is [MIT licensed](LICENSE).
