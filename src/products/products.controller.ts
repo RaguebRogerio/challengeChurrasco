@@ -21,10 +21,11 @@ export class ProductsController {
   findAll() {
     return this.productsService.findAll();
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+  
+  @UseGuards(JwtAuthGuard)
+  @Get(':sku')
+  findOne(@Param('sku') sku: string) {
+    return this.productsService.findOne(sku);
   }
 
 }

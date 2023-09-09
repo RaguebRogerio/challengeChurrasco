@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException } from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose'
 import { CreateProductDto } from './dto/create-product.dto';
 import { Products, ProductsDocument } from './schema/products.schema';
@@ -9,18 +9,19 @@ export class ProductsService {
 
   }
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto): Promise<Products> {
     const productCreated = await this.productModule.create(createProductDto);
     return productCreated;
   }
 
-  async findAll() {
+  async findAll() : Promise<Products[]> {
     const listAllProduct = await this.productModule.find({});
     return listAllProduct;
   }
 
-  async findOne(idProduct: number) {
-    const productReturn = await this.productModule.findOne({where: { id: idProduct }});
+  async findOne(skuProduct: string): Promise<Products> {
+    const productReturn = await this.productModule.findOne({SKU:skuProduct});
+    if(!productReturn) throw new HttpException('product_not_found', 404);
     return productReturn
   }
 }
