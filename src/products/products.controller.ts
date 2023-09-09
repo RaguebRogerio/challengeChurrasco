@@ -36,5 +36,14 @@ export class ProductsController {
     ) {
     return this.productsService.getOfUnderPrince(price,currency);
   }
-
+  
+  @UseGuards(JwtAuthGuard)
+  @Get('/getOfUnderPrince/:minprice/:maxprice/:currency')
+  getProductsInIntervalPrice(
+    @Param('minprice') minPrice: number,
+    @Param('maxprice') maxPrice: number,
+    @Param('currency') currency: string,
+    ) {
+    return this.productsService.getProductsInIntervalPrice(minPrice,maxPrice,currency);
+  }
 }

@@ -21,14 +21,19 @@ export class ProductsService {
 
   async getBySKU(skuProduct: string): Promise<Products> {
     const productReturn = await this.productModule.findOne({SKU:skuProduct});
-    if(!productReturn) throw new HttpException('product_not_found', 404);
+    if(!productReturn) throw new HttpException('product_not_match', 404);
     return productReturn
   }
 
   async getOfUnderPrince(price: number, currency: string): Promise<Products[]> {
     const productReturn = await this.productModule.find({ price: { $lt: price }, currency }).exec();
-    if(!productReturn) throw new HttpException('product_not_found', 404);
+    if(!productReturn) throw new HttpException('product_not_match', 404);
+    return productReturn
+  }
 
+  async getProductsInIntervalPrice(minPrice: number, maxPrice:number, currency: string): Promise<Products[]> {
+    const productReturn = await this.productModule.find({ price: { $gte: minPrice, $lte: maxPrice }, currency }).exec();
+    if(!productReturn) throw new HttpException('product_not_match', 404);
     return productReturn
   }
 }
