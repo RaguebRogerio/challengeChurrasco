@@ -29,16 +29,25 @@ export class ProductsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/getOfUnderPrince/:price/:currency')
-  getOfUnderPrince(
+  @Get('/getOfUnderPrice/:price/:currency')
+  getOfUnderPrice(
     @Param('price') price: number,
     @Param('currency') currency: string,
     ) {
-    return this.productsService.getOfUnderPrince(price,currency);
+    return this.productsService.getOfUnderPrice(price,currency);
   }
-  
+
   @UseGuards(JwtAuthGuard)
-  @Get('/getOfUnderPrince/:minprice/:maxprice/:currency')
+  @Get('/getOfOnPrice/:price/:currency')
+  getOfOnPrice(
+    @Param('price') price: number,
+    @Param('currency') currency: string,
+    ) {
+    return this.productsService.getOfOnPrice(price,currency);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/getProductsInIntervalPrice/:minprice/:maxprice/:currency')
   getProductsInIntervalPrice(
     @Param('minprice') minPrice: number,
     @Param('maxprice') maxPrice: number,

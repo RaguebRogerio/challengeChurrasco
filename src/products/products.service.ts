@@ -25,8 +25,14 @@ export class ProductsService {
     return productReturn
   }
 
-  async getOfUnderPrince(price: number, currency: string): Promise<Products[]> {
+  async getOfUnderPrice(price: number, currency: string): Promise<Products[]> {
     const productReturn = await this.productModule.find({ price: { $lt: price }, currency }).exec();
+    if(!productReturn) throw new HttpException('product_not_match', 404);
+    return productReturn
+  }
+
+  async getOfOnPrice(price: number, currency: string): Promise<Products[]> {
+    const productReturn = await this.productModule.find({ price: { $gt: price }, currency }).exec();
     if(!productReturn) throw new HttpException('product_not_match', 404);
     return productReturn
   }
