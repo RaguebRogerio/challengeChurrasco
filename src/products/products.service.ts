@@ -16,6 +16,7 @@ export class ProductsService {
 
   async findAll() : Promise<Products[]> {
     const listAllProduct = await this.productModule.find({});
+    if(!listAllProduct) throw new HttpException('there are no products', 500);
     return listAllProduct;
   }
 
