@@ -15,7 +15,7 @@ export class CreateProductDto {
     @IsNotEmpty()
     @IsNumber()
     @Min(0)
-    price: Number;
+    price: number;
   
     @IsString()
     @IsNotEmpty()
@@ -23,7 +23,7 @@ export class CreateProductDto {
     
     @IsNumber()
     @IsOptional()
-    code: Number;
+    code: number;
     
     @IsString()
     @IsOptional()
