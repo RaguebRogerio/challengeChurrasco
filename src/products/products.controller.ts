@@ -11,13 +11,13 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Post("create")
+  @Post("")
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get("getAll")
+  @Get("")
   findAll() {
     return this.productsService.findAll();
   }
@@ -29,7 +29,19 @@ export class ProductsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/getOfUnderPrice/:price/:currency')
+  @Get('/get-by-name/:name')
+  getByName(@Param('name') name: string) {
+    return this.productsService.getByName(name);
+  }
+  
+  @UseGuards(JwtAuthGuard)
+  @Get('/get-by-currency/:currency')
+  getAllByCurrency(@Param('currency') currency: string) {
+    return this.productsService.getAllByCurrency(currency);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/get-of-under-price/:price/:currency')
   getOfUnderPrice(
     @Param('price') price: number,
     @Param('currency') currency: string,
@@ -38,16 +50,16 @@ export class ProductsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/getOfOnPrice/:price/:currency')
-  getOfOnPrice(
+  @Get('/get-of-over-price/:price/:currency')
+  getOfOverPrice(
     @Param('price') price: number,
     @Param('currency') currency: string,
     ) {
-    return this.productsService.getOfOnPrice(price,currency);
+    return this.productsService.getOfOverPrice(price,currency);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/getProductsInIntervalPrice/:minprice/:maxprice/:currency')
+  @Get('/get-products-in-interval-price/:minprice/:maxprice/:currency')
   getProductsInIntervalPrice(
     @Param('minprice') minPrice: number,
     @Param('maxprice') maxPrice: number,
