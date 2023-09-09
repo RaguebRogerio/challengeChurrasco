@@ -24,7 +24,8 @@
 
 ## Description
 
-Codigo presentado por Franco Asfoura, para 
+Code presented by Franco Asfoura, for the company <em>Churrasco</em>
+
 ## Installation
 
 ```bash
@@ -41,11 +42,11 @@ $ npm run start
 $ npm run start:dev
 ```
 ## Swagger
-The local swagger run in http://localhost:3000/docs
+The swagger run in http://localhost:3000/docs
 
 
 ## Stay in touch
 
-- Author - [Asfoura,Franco](https://www.linkedin.com/in/franco-ragueb-asfoura-assaff-77b574201/)
+- Linkedin - [Asfoura,Franco](https://www.linkedin.com/in/franco-ragueb-asfoura-assaff-77b574201/)
 
 
