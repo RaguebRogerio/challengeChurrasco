@@ -19,9 +19,16 @@ export class ProductsService {
     return listAllProduct;
   }
 
-  async findOne(skuProduct: string): Promise<Products> {
+  async getBySKU(skuProduct: string): Promise<Products> {
     const productReturn = await this.productModule.findOne({SKU:skuProduct});
     if(!productReturn) throw new HttpException('product_not_found', 404);
+    return productReturn
+  }
+
+  async getOfUnderPrince(price: number, currency: string): Promise<Products[]> {
+    const productReturn = await this.productModule.find({ price: { $lt: price }, currency }).exec();
+    if(!productReturn) throw new HttpException('product_not_found', 404);
+
     return productReturn
   }
 }

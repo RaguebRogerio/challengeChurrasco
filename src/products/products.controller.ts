@@ -21,11 +21,20 @@ export class ProductsController {
   findAll() {
     return this.productsService.findAll();
   }
-  
+
   @UseGuards(JwtAuthGuard)
   @Get(':sku')
-  findOne(@Param('sku') sku: string) {
-    return this.productsService.findOne(sku);
+  getBySKU(@Param('sku') sku: string) {
+    return this.productsService.getBySKU(sku);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/getOfUnderPrince/:price/:currency')
+  getOfUnderPrince(
+    @Param('price') price: number,
+    @Param('currency') currency: string,
+    ) {
+    return this.productsService.getOfUnderPrince(price,currency);
   }
 
 }
